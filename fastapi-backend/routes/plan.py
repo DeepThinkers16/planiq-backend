@@ -10,11 +10,13 @@ def today_plan(user_id: str):
         return {"error": "설문 없음"}
 
     data = doc.to_dict()
+
     subjects = data.get("subjects", [])
     study_details = data.get("studyDetails", "")
     target_date = data.get("targetDate", "")
     confidence = data.get("confidence", {})
     available_time = data.get("availableTime", {})
+    difficult_units = data.get("difficultUnits", {}) 
 
     if not subjects or not target_date:
         return {"error": "필수 데이터 누락"}
@@ -25,5 +27,6 @@ def today_plan(user_id: str):
         "studyDetails": study_details,
         "targetDate": target_date,
         "confidence": confidence,
-        "availableTime": available_time
+        "availableTime": available_time,
+        "difficultUnits": difficult_units  
     }
